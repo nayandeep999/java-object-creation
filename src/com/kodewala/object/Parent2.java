@@ -6,75 +6,68 @@ public class Parent2 {
 	int y = 10;
 
 	static {
-		System.out.println("Static from parent");
+		System.out.println("[Parent2] Static block executed");
 	}
 
 	{
-		System.out.println("IIB - Already initialized x & y values from parent b/c they executed before IIB");
+		System.out.println("[Parent2] Instance initializer block executed (x=" + x + ", y=" + y + ")");
 	}
 
 	Parent2() {
-		System.out.println("Third line from parent constructor");
-		show();
-
+		System.out.println("[Parent2] Constructor started");
+		show(); // dynamic dispatch — calls child's show() if child object is being created
+		System.out.println("[Parent2] Constructor finished");
 	}
 
 	void show() {
-
-		System.out.println("The value of x is: " + x);
-
+		System.out.println("[Parent2] show(): x = " + x);
 	}
 
 	public static void main(String[] args) {
 		new Child();
 	}
-
 }
 
 class Child extends Parent2 {
 
 	static {
-		System.out.println("Static from child");
+		System.out.println("[Child] Static block executed");
 	}
 
 	{
-		System.out.println("IIB - Executing IIB before initializing x");
+		System.out.println("[Child] Instance initializer block executed (before initializing child’s x)");
 	}
 
 	int x = 20;
 
 	Child() {
-		System.out.println("Third line from child constructor");
+		System.out.println("[Child] Constructor executed");
 	}
 
+	@Override
 	void show() {
-
-		System.out.println("The value of x is: " + x);
-
+		System.out.println("[Child] show(): x = " + x);
 	}
-
 }
 
 class Child3 extends Parent2 {
 
 	static {
-		System.out.println("Static from child3");
+		System.out.println("[Child3] Static block executed");
 	}
 
 	{
-		System.out.println("Initializing values from child3");
+		System.out.println("[Child3] Instance initializer block executed");
 	}
 
 	int x = 20;
 
 	Child3() {
-		System.out.println("This is child3 constructor");
+		System.out.println("[Child3] Constructor executed");
 	}
 
+	@Override
 	void show() {
-
-		System.out.println("The value of x is: " + x);
-
+		System.out.println("[Child3] show(): x = " + x);
 	}
-
 }
