@@ -1,5 +1,15 @@
 package com.kodewala.object;
 
+/*- 
+
+Parent2 is loaded because it contains main().
+
+Child is loaded because you instantiate it.
+
+Child3 is not loaded because it’s never used.
+
+*/
+
 public class Parent2 {
 
 	int x = 10;
